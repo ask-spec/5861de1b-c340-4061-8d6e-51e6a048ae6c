@@ -2,41 +2,77 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
-All colors MUST be HSL.
-*/
+/* Professional Financial Services Design System */
 
 @layer base {
   :root {
+    /* Primary Brand Colors */
     --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
-
+    --foreground: 222 47% 11%;
+    
+    /* Trust & Professionalism */
+    --primary: 217 91% 60%;  /* Professional Blue */
+    --primary-foreground: 0 0% 98%;
+    --primary-dark: 217 91% 45%;
+    --primary-light: 217 91% 85%;
+    
+    /* Premium & Success */
+    --accent: 45 93% 47%;  /* Golden accent for premium services */
+    --accent-foreground: 222 47% 11%;
+    --success: 142 76% 36%;
+    --success-foreground: 0 0% 98%;
+    
+    /* Supporting Colors */
+    --secondary: 210 40% 95%;
+    --secondary-foreground: 222 47% 11%;
+    --muted: 217 32% 96%;
+    --muted-foreground: 215 20% 65%;
+    
+    /* Interactive Elements */
     --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
-
+    --card-foreground: 222 47% 11%;
     --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
-
-    --primary: 222.2 47.4% 11.2%;
-    --primary-foreground: 210 40% 98%;
-
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
-
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
-
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%;
-
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
-
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 222.2 84% 4.9%;
-
-    --radius: 0.5rem;
+    --popover-foreground: 222 47% 11%;
+    --border: 217 32% 89%;
+    --input: 217 32% 89%;
+    --ring: 217 91% 60%;
+    
+    /* Status Colors */
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 98%;
+    --warning: 38 92% 50%;
+    --warning-foreground: 222 47% 11%;
+    
+    /* Design System */
+    --radius: 0.75rem;
+    
+    /* Professional Gradients */
+    --gradient-primary: linear-gradient(135deg, hsl(217 91% 60%), hsl(217 91% 45%));
+    --gradient-hero: linear-gradient(135deg, hsl(217 91% 60%), hsl(217 91% 45%), hsl(45 93% 47%));
+    --gradient-card: linear-gradient(145deg, hsl(0 0% 100%), hsl(217 32% 98%));
+    --gradient-accent: linear-gradient(135deg, hsl(45 93% 47%), hsl(45 93% 55%));
+    
+    /* Professional Shadows */
+    --shadow-soft: 0 2px 10px -2px hsl(217 91% 60% / 0.1);
+    --shadow-medium: 0 8px 25px -5px hsl(217 91% 60% / 0.15);
+    --shadow-strong: 0 20px 50px -10px hsl(217 91% 60% / 0.25);
+    --shadow-glow: 0 0 30px hsl(217 91% 60% / 0.3);
+    
+    /* Typography Scale */
+    --font-size-xs: 0.75rem;
+    --font-size-sm: 0.875rem;
+    --font-size-base: 1rem;
+    --font-size-lg: 1.125rem;
+    --font-size-xl: 1.25rem;
+    --font-size-2xl: 1.5rem;
+    --font-size-3xl: 1.875rem;
+    --font-size-4xl: 2.25rem;
+    --font-size-5xl: 3rem;
+    
+    /* Transitions */
+    --transition-fast: 150ms cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-smooth: 300ms cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-slow: 500ms cubic-bezier(0.4, 0, 0.2, 1);
 
     --sidebar-background: 0 0% 98%;
 
@@ -94,12 +130,53 @@ All colors MUST be HSL.
   }
 }
 
+  }
+}
+
 @layer base {
   * {
     @apply border-border;
   }
 
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground font-sans;
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-semibold tracking-tight;
+  }
+}
+
+@layer components {
+  /* Professional Button Styles */
+  .btn-hero {
+    @apply bg-gradient-to-r from-primary to-accent text-white font-semibold px-8 py-4 rounded-lg
+           shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 transition-all duration-300;
+  }
+  
+  .btn-primary {
+    @apply bg-primary hover:bg-primary-dark text-primary-foreground px-6 py-3 rounded-lg
+           shadow-md hover:shadow-lg transition-all duration-200;
+  }
+  
+  .btn-accent {
+    @apply bg-accent hover:bg-accent/90 text-accent-foreground px-6 py-3 rounded-lg
+           shadow-md hover:shadow-lg transition-all duration-200;
+  }
+  
+  /* Professional Card Styles */
+  .card-professional {
+    @apply bg-white rounded-xl shadow-soft border border-border/50 p-6
+           hover:shadow-medium transition-shadow duration-300;
+  }
+  
+  .card-premium {
+    @apply bg-gradient-to-br from-white to-muted rounded-xl shadow-medium border border-accent/20 p-6
+           hover:shadow-strong transition-all duration-300;
+  }
+  
+  /* Section Styles */
+  .section-container {
+    @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
   }
 }
